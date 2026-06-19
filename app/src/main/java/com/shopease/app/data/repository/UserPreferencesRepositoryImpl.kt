@@ -10,9 +10,11 @@ class UserPreferencesRepositoryImpl(
 
     override val isLoggedIn: Flow<Boolean> = dataStore.isLoggedIn
     override val userId: Flow<String?> = dataStore.userId
+    override val userName: Flow<String?> = dataStore.userName
+    override val userEmail: Flow<String?> = dataStore.userEmail
 
-    override suspend fun login(userId: String) {
-        dataStore.setLoggedIn(userId)
+    override suspend fun login(userId: String, name: String, email: String) {
+        dataStore.setLoggedIn(userId, name, email)
     }
 
     override suspend fun logout() {

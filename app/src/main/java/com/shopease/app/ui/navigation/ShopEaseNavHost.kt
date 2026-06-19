@@ -1,14 +1,7 @@
 package com.shopease.app.ui.navigation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -26,14 +19,16 @@ import com.shopease.app.ui.productdetail.ProductDetailScreen
 import com.shopease.app.ui.productdetail.ProductDetailViewModel
 import com.shopease.app.ui.productlist.ProductListScreen
 import com.shopease.app.ui.productlist.ProductListViewModel
+import com.shopease.app.ui.profile.ProfileScreen
+import com.shopease.app.ui.profile.ProfileViewModel
 import com.shopease.app.ui.search.SearchScreen
 import com.shopease.app.ui.search.SearchViewModel
 import com.shopease.app.ui.wishlist.WishlistScreen
 import com.shopease.app.ui.wishlist.WishlistViewModel
 
 /**
- * Root NavHost. ProductList is fully wired (Phase 4); remaining screens get
- * filled in as each feature is built (Phases 5-6).
+ * Root NavHost. All seven screens are fully wired to real ViewModels and
+ * repositories from AppContainer — no placeholders left as of this commit.
  */
 @Composable
 fun ShopEaseNavHost(
@@ -106,7 +101,10 @@ fun ShopEaseNavHost(
             )
         }
         composable(Screen.Profile.route) {
-            PlaceholderScreen(label = "Profile — coming in Phase 7")
+            val viewModel: ProfileViewModel = viewModel(
+                factory = ViewModelFactory { ProfileViewModel(container.userPreferencesRepository) }
+            )
+            ProfileScreen(viewModel = viewModel)
         }
         composable(
             route = Screen.ProductDetail.route,
@@ -128,17 +126,5 @@ fun ShopEaseNavHost(
                 onNavigateBack = { navController.popBackStack() }
             )
         }
-    }
-}
-
-@Composable
-private fun PlaceholderScreen(label: String) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = label)
     }
 }

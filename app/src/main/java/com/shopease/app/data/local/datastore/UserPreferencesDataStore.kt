@@ -20,6 +20,8 @@ class UserPreferencesDataStore(private val context: Context) {
     private object Keys {
         val IS_LOGGED_IN = booleanPreferencesKey("is_logged_in")
         val USER_ID = stringPreferencesKey("user_id")
+        val USER_NAME = stringPreferencesKey("user_name")
+        val USER_EMAIL = stringPreferencesKey("user_email")
     }
 
     val isLoggedIn: Flow<Boolean> = context.dataStore.data.map { prefs ->
@@ -30,10 +32,20 @@ class UserPreferencesDataStore(private val context: Context) {
         prefs[Keys.USER_ID]
     }
 
-    suspend fun setLoggedIn(userId: String) {
+    val userName: Flow<String?> = context.dataStore.data.map { prefs ->
+        prefs[Keys.USER_NAME]
+    }
+
+    val userEmail: Flow<String?> = context.dataStore.data.map { prefs ->
+        prefs[Keys.USER_EMAIL]
+    }
+
+    suspend fun setLoggedIn(userId: String, name: String, email: String) {
         context.dataStore.edit { prefs ->
             prefs[Keys.IS_LOGGED_IN] = true
             prefs[Keys.USER_ID] = userId
+            prefs[Keys.USER_NAME] = name
+            prefs[Keys.USER_EMAIL] = email
         }
     }
 
@@ -41,6 +53,8 @@ class UserPreferencesDataStore(private val context: Context) {
         context.dataStore.edit { prefs ->
             prefs[Keys.IS_LOGGED_IN] = false
             prefs.remove(Keys.USER_ID)
+            prefs.remove(Keys.USER_NAME)
+            prefs.remove(Keys.USER_EMAIL)
         }
     }
 }
