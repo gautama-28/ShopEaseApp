@@ -6,6 +6,45 @@ I built this mainly for my resume/portfolio and for interview prep, so I've trie
 
 ---
 
+## Screenshots
+
+<table>
+    <tr>
+        <td align="center">
+            <img src="screenshots/1.jpeg" alt="Home screen" width="320" />
+        </td>
+        <td align="center">
+            <img src="screenshots/2.jpeg" alt="Home screen" width="320" />
+        </td>
+                <td align="center">
+            <img src="screenshots/3.jpeg" alt="Home screen" width="320" />
+        </td>
+                <td align="center">
+            <img src="screenshots/4.jpeg" alt="Home screen" width="320" />
+        </td>
+                <td align="center">
+            <img src="screenshots/5.jpeg" alt="Home screen" width="320" />
+        </td>    
+    </tr>
+    <tr>
+        <td align="center">
+            <img src="screenshots/6.jpeg" alt="Home screen" width="320" />
+        </td>
+                <td align="center">
+            <img src="screenshots/7.jpeg" alt="Home screen" width="320" />
+        </td>
+                <td align="center">
+            <img src="screenshots/8.jpeg" alt="Home screen" width="320" />
+        </td>
+                <td align="center">
+            <img src="screenshots/9.jpeg" alt="Home screen" width="320" />
+        </td>        
+    </tr>
+</table>
+
+
+---
+
 ## Why I built this
 
 I'd already built a Todo app and a Campus Notifications app with basic MVVM, and I wanted my next project to go a level deeper — specifically:
